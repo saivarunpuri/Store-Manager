@@ -14,7 +14,7 @@ import AddUser from "./pages/Admin/AddUser";
 import AdminLogin from "./components/admin/AdminLogin";
 import UserList from "./pages/admin/UserList";
 import StoreList from "./pages/admin/StoreList";
-import SubmittedRatings from "./pages/Admin/SubmittedRatings";
+import SubmittedRatings from "./pages/admin/SubmittedRatings";
 import AddStore from "./pages/admin/AddStore";
 
 const App = () => {
