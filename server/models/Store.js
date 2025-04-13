@@ -26,3 +26,14 @@ export const getStores = async () => {
     throw new Error('Error fetching stores');
   }
 };
+
+export const updateStorePassword = async (storeId, newPassword) => {
+  return db.one(
+    'UPDATE stores SET password = $1 WHERE id = $2 RETURNING *',
+    [newPassword, storeId]
+  );
+};
+
+export const getStoreById = async (storeId) => {
+  return db.oneOrNone('SELECT * FROM stores WHERE id = $1', [storeId]);
+};

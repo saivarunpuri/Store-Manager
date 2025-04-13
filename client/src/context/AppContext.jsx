@@ -77,6 +77,22 @@ const fetchRatingsForStore = async (storeId) => {
   }
 };
 
+const fetchAllRatings = async () => {
+  try {
+    const res = await axios.get("/admin/ratings");
+    setRatings(res.data); // No .data.data — backend sends plain array
+  } catch (error) {
+    console.error("Failed to fetch all ratings:", error);
+  }
+};
+
+useEffect(() => {
+  if (isAdmin) {
+    fetchAllRatings();
+  }
+}, [isAdmin]);
+
+
 
 
 // Call it when a store logs in
@@ -105,7 +121,8 @@ useEffect(() => {
     setRatings,
     isAdmin,
     setIsAdmin,
-    fetchRatingsForStore
+    fetchRatingsForStore,
+    fetchAllRatings
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

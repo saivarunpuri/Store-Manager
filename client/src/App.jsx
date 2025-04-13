@@ -15,7 +15,7 @@ import AdminLogin from "./components/admin/AdminLogin";
 import UserList from "./pages/admin/UserList";
 import StoreList from "./pages/admin/StoreList";
 import SubmittedRatings from "./pages/admin/SubmittedRatings";
-import AddStore from "./pages/admin/AddStore";
+import AddStore from "./pages/Admin/AddStore";
 
 const App = () => {
   const location = useLocation();

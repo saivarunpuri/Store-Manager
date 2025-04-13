@@ -64,11 +64,26 @@ export const adminListStores = async (req, res) => {
   }
 };
 
+
+
 export const adminGetRatings = async (req, res) => {
   try {
-    const ratings = await getAllRatings();
-    res.json({ data: ratings });
-  } catch (err) {
-    res.status(500).json({ message: 'Fetch ratings failed', error: err.message });
+    const ratings = await db.any(`
+      SELECT 
+        r.id,
+        u.name AS username,
+        r.rating,
+        r.store_id,
+        s.name AS store_name
+      FROM ratings r
+      JOIN users u ON r.user_id = u.id
+      JOIN stores s ON r.store_id = s.id
+      ORDER BY r.id DESC
+    `);
+
+    res.json(ratings);
+  } catch (error) {
+    console.error("Error fetching all ratings:", error);
+    res.status(500).json({ message: "Error fetching all ratings" });
   }
 };

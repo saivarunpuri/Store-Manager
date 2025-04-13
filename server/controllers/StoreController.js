@@ -1,4 +1,4 @@
-import { createStore, getStores, findStoreByEmail } from '../models/Store.js'; // 👈 add this
+import { createStore, getStores, findStoreByEmail,getStoreById, updateStorePassword } from '../models/Store.js'; // 👈 add this
 
 export const addStore = async (req, res) => {
   const { name, email, address, rating, password } = req.body; // 👈 include password if needed
@@ -42,3 +42,24 @@ export const loginStore = async (req, res) => {
   }
 };
 
+export const changeStorePassword = async (req, res) => {
+  const { storeId, currentPassword, newPassword } = req.body;
+
+  try {
+    const store = await getStoreById(storeId);
+
+    if (!store) {
+      return res.status(404).json({ message: 'Store not found' });
+    }
+
+    if (store.password !== currentPassword) {
+      return res.status(400).json({ message: 'Current password is incorrect' });
+    }
+
+    const updatedStore = await updateStorePassword(storeId, newPassword);
+    res.status(200).json({ message: 'Password updated successfully', data: updatedStore });
+  } catch (error) {
+    console.error('Error changing store password:', error.message);
+    res.status(500).json({ message: 'Something went wrong' });
+  }
+};

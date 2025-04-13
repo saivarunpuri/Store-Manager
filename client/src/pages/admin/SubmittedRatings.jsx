@@ -17,7 +17,7 @@ const SubmittedRatings = () => {
                 <tr>
                   <th className="px-4 py-3 font-semibold truncate">#</th>
                   <th className="px-4 py-3 font-semibold truncate">Username</th>
-                  <th className="px-4 py-3 font-semibold truncate">Store ID</th>
+                  <th className="px-4 py-3 font-semibold truncate">Store Name</th>
                   <th className="px-4 py-3 font-semibold truncate">Rating</th>
                 </tr>
               </thead>
@@ -26,7 +26,7 @@ const SubmittedRatings = () => {
                   <tr key={index} className="border-t border-gray-500/20">
                     <td className="px-4 py-3">{index + 1}</td>
                     <td className="px-4 py-3 truncate">{r.username}</td>
-                    <td className="px-4 py-3 truncate">{r.store_id}</td>
+                    <td className="px-4 py-3 truncate">{r.store_name}</td>
                     <td className="px-4 py-3 text-yellow-500 font-semibold">
                       ⭐ {r.rating}
                     </td>

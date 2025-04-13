@@ -35,3 +35,24 @@ export const getUsers = async () => {
         throw error;
     }
 };
+
+export const updateUserPassword = async (userId, newPassword) => {
+    try {
+      await db.none('UPDATE users SET password = $1 WHERE id = $2', [newPassword, userId]);
+      return true;
+    } catch (error) {
+      console.error('Error updating password in DB:', error.message);
+      throw error;
+    }
+  };
+  
+  export const getUserById = async (id) => {
+    try {
+      const result = await db.oneOrNone('SELECT * FROM users WHERE id = $1', [id]);
+      return result;
+    } catch (error) {
+      console.error('Error getting user by ID:', error.message);
+      throw error;
+    }
+  };
+  
