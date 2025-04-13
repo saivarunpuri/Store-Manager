@@ -32,7 +32,7 @@ A full-stack web application where users can browse and rate stores across vario
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/store-manager.git
+https://github.com/saivarunpuri/Store-Manager
 cd store-manager
 ```
 
